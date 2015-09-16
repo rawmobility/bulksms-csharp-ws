@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="http://webservice.gateway.blender.rawmobility.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:tns="http://webservice.gateway.blender.rawmobility.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SendSMSService" targetNamespace="http://webservice.gateway.blender.rawmobility.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://webservice.gateway.blender.rawmobility.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="batchRecipientSingleBody" type="tns:batchRecipientSingleBody" />
+      <xs:element name="batchmulti" type="tns:batchMessageMultiBody" />
+      <xs:element name="batchsingle" type="tns:batchMessageSingleBody" />
+      <xs:element name="message" type="tns:batchRecipientMultiBody" />
+      <xs:element name="sendBatchMulti" type="tns:sendBatchMulti" />
+      <xs:element name="sendBatchMultiResponse" type="tns:sendBatchMultiResponse" />
+      <xs:element name="sendBatchSingle" type="tns:sendBatchSingle" />
+      <xs:element name="sendBatchSingleResponse" type="tns:sendBatchSingleResponse" />
+      <xs:element name="sendSms" type="tns:sendSms" />
+      <xs:element name="sendSmsResponse" type="tns:sendSmsResponse" />
+      <xs:complexType name="sendSms">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="originator" type="xs:string" />
+          <xs:element minOccurs="0" name="recipients" type="xs:string" />
+          <xs:element minOccurs="0" name="text" type="xs:string" />
+          <xs:element minOccurs="0" name="routeId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendSmsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:batchMessageMultiBody" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="batchMessageMultiBody">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:batchMessage">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="recipients">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="recipient" type="tns:batchRecipientMultiBody" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="batchMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="body" type="xs:string" />
+          <xs:element minOccurs="0" name="creatingUserId" type="xs:string" />
+          <xs:element minOccurs="0" name="deliverySchedule" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="deliveryScheduleDestinationTime" type="xs:string" />
+          <xs:element minOccurs="0" name="deliveryTimeZone" type="xs:string" />
+          <xs:element name="detailedResponse" type="xs:boolean" />
+          <xs:element name="filterOptouts" type="xs:boolean" />
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element name="messageSpread" type="xs:int" />
+          <xs:element minOccurs="0" name="originator" type="xs:string" />
+          <xs:element name="processOnDelivery" type="xs:boolean" />
+          <xs:element minOccurs="0" name="routeId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="batchRecipientMultiBody">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="body" type="xs:string" />
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="originator" type="xs:string" />
+          <xs:element minOccurs="0" name="recipient" type="xs:string" />
+          <xs:element minOccurs="0" name="reference" type="xs:string" />
+          <xs:element minOccurs="0" name="routeId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendBatchMulti">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="arg2" type="tns:batchMessageMultiBody" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendBatchMultiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:batchMessageMultiBody" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendBatchSingle">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="arg2" type="tns:batchMessageSingleBody" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="batchMessageSingleBody">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:batchMessage">
+            <xs:sequence>
+              <xs:element name="filterDuplicaets" type="xs:boolean" />
+              <xs:element minOccurs="0" name="recipients">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="recipient" type="tns:batchRecipientSingleBody" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="batchRecipientSingleBody">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="recipient" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="tns:batchMessageRecipientType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendBatchSingleResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:batchMessageSingleBody" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="batchMessageRecipientType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CONTACT" />
+          <xs:enumeration value="MAILINGLIST" />
+          <xs:enumeration value="MSISDN" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </types>
+  <message name="sendBatchMultiResponse">
+    <part name="parameters" element="tns:sendBatchMultiResponse" />
+  </message>
+  <message name="sendBatchSingle">
+    <part name="parameters" element="tns:sendBatchSingle" />
+  </message>
+  <message name="sendSms">
+    <part name="parameters" element="tns:sendSms" />
+  </message>
+  <message name="sendBatchSingleResponse">
+    <part name="parameters" element="tns:sendBatchSingleResponse" />
+  </message>
+  <message name="sendSmsResponse">
+    <part name="parameters" element="tns:sendSmsResponse" />
+  </message>
+  <message name="sendBatchMulti">
+    <part name="parameters" element="tns:sendBatchMulti" />
+  </message>
+  <portType name="SendSMS">
+    <operation name="sendSms">
+      <input name="sendSms" message="tns:sendSms" />
+      <output name="sendSmsResponse" message="tns:sendSmsResponse" />
+    </operation>
+    <operation name="sendBatchMulti">
+      <input name="sendBatchMulti" message="tns:sendBatchMulti" />
+      <output name="sendBatchMultiResponse" message="tns:sendBatchMultiResponse" />
+    </operation>
+    <operation name="sendBatchSingle">
+      <input name="sendBatchSingle" message="tns:sendBatchSingle" />
+      <output name="sendBatchSingleResponse" message="tns:sendBatchSingleResponse" />
+    </operation>
+  </portType>
+  <binding name="SendSMSServiceSoapBinding" type="tns:SendSMS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="sendSms">
+      <soap:operation soapAction="" style="document" />
+      <input name="sendSms">
+        <soap:body use="literal" />
+      </input>
+      <output name="sendSmsResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="sendBatchMulti">
+      <soap:operation soapAction="" style="document" />
+      <input name="sendBatchMulti">
+        <soap:body use="literal" />
+      </input>
+      <output name="sendBatchMultiResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="sendBatchSingle">
+      <soap:operation soapAction="" style="document" />
+      <input name="sendBatchSingle">
+        <soap:body use="literal" />
+      </input>
+      <output name="sendBatchSingleResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="SendSMSService">
+    <port name="SendSMSPort" binding="tns:SendSMSServiceSoapBinding">
+      <soap:address location="http://10.147.27.49:8080/gateway/ws/sendsms" />
+    </port>
+  </service>
+</definitions>
