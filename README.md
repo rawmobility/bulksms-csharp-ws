@@ -1,6 +1,6 @@
 # bulksms-csharp-ws
 
-This is a demo C# project demonstrating the use of Bulk SMS WebService.
+This is a C# project demonstrating the use of Bulk SMS WebService.
 
 ## WSDL
 
