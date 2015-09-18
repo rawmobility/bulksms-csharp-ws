@@ -72,3 +72,24 @@ try {
 	Console.WriteLine ("Error: " + e.Message);
 }
 ```
+
+### Receive Incoming Message
+```C#
+[System.Web.Services.WebMethod()]
+public String IncomingMessage(String xml)
+{
+	blender.SMSApi.ReceiveMO(incomingXml);
+	return "ok";
+}
+```
+
+
+### Receive Delivery Receipt
+```C#
+[System.Web.Services.WebMethod()]
+public String DeliveryReceipt(String xml)
+{
+	blender.SMSApi.ReceiveDR(incomingXml);
+	return "ok";
+}
+```
