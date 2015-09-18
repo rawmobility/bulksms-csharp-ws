@@ -40,6 +40,8 @@
     <Compile Include="Web References\apps.rawmobility.com\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryMessage.cs" />
+    <Compile Include="DeliveryReceipt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
