@@ -5,7 +5,7 @@ using System.IO;
 
 namespace blender
 {
-	class MainClass
+	class SMSApi
 	{
 		public static void Main (string[] args)
 		{
@@ -17,12 +17,14 @@ namespace blender
 			String password = "PASS_WORD";
 
 			SendSMSService sendSms = new SendSMSService (url);
+
+			/************************ SEND SINGLE MESSAGE ******************************/		
 			batchMessageMultiBody sendResult = sendSms.sendSms (username, password, "Test", "61000000000", "Hello this is a test", routeId);
 			String remoteId = sendResult.recipients [0].id;
 			Console.WriteLine ("Singlel SMS Sent, ID: " + remoteId);
 
-			// Send batch message
 
+			/************************ SEND BATCH MESSAGE ******************************/
 			// Create batch object, set default data
 			batchMessageMultiBody batch = new batchMessageMultiBody ();
 			// Request detailed response (ID per recipient)
@@ -75,12 +77,12 @@ namespace blender
 
 			// Receiving messages and receipts - we POST a single parameter named "xml".
 
-			// Simulate Incoming Message
+			/************************ Simulate Incoming Message ******************************/
 			// This should be handled by a WebMethod or Web API
 			String incomingXml = "<deliverymessage><created>2011-12-19T06:29:56+0000</created> <id>0ed7b241-096e-4ca4-abc3-a365f11fae8f</id> <ownerUserId>6f8905b9-1a98-4944-9940-2de5991fa107</ownerUserId> <version>0</version> <body>Test 11:33</body> <inReplyTo>cad1bf26-1294-4076-8b44-1197f2568104</inReplyTo> <logicalMessageId>c8aca89b-84e1-42fe-a32c-5050cd6a0590</logicalMessageId> <originator>447939201990</originator> <recipient>447763686669</recipient> </deliverymessage>";
 			DeliveryMessage incoming = ReceiveMO (incomingXml);
 
-			// Simulate Delivery Receipt
+			/************************ Simulate Delivery Receipt ******************************/
 			// This should be handled by a WebMethod or Web API
 			String receiptXml = "<deliveryreceipt><created>2011-12-19T06:29:56+0000</created> <id>aa49b0e4-38f7-4491-a5f4-23a01b03811a</id> <deliveryMessageId>2ae13f9d-f5dc-4478-ab17-ba13ddeffad2</deliveryMessageId> <status>ACCEPTED</status><clientReference>myref</clientReference><part>1</part><parts>1</parts></deliveryreceipt>";
 			DeliveryReceipt receipt = ReceiveDR (receiptXml);

@@ -25,6 +25,10 @@ namespace blender
 		{
 			
 		}
+
+		public Boolean isDelivered() {
+			return status.Equals ("DELIVERED");
+		}
 	}
 }
 
