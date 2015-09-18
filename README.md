@@ -78,7 +78,10 @@ try {
 [System.Web.Services.WebMethod()]
 public String IncomingMessage(String xml)
 {
-	blender.SMSApi.ReceiveMO(incomingXml);
+	blender.DeliveryMessage message = blender.SMSApi.ReceiveMO(xml);
+	
+	// TODO: Save message, process asynchronously
+	
 	return "ok";
 }
 ```
@@ -89,7 +92,10 @@ public String IncomingMessage(String xml)
 [System.Web.Services.WebMethod()]
 public String DeliveryReceipt(String xml)
 {
-	blender.SMSApi.ReceiveDR(incomingXml);
+	blender.DeliveryReceipt receipt = blender.SMSApi.ReceiveDR(xml);
+	
+	// TODO: Save receipt, process asynchronously
+	
 	return "ok";
 }
 ```
